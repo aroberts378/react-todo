@@ -1,55 +1,85 @@
-import './App.css';
-import { useState } from 'react';
-import { Task } from "./Task";
+import React, { useState } from "react";
+import "./App.css";
+
 function App() {
-  const [todoList,setTodoList] = useState([]);
+  const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [editedTask, setEditedTask] = useState("");
 
-
-  const handleChange = (event) => {
-    setNewTask(event.target.value);
-  };
   const addTask = () => {
-    const task = {
-      id: todoList.length === 0 ? 1 : todoList[todoList.length -1].id + 1,
-      taskName: newTask,
-      completed: false, 
-    };
-    setTodoList([...todoList, task]);
+    if (newTask.trim()) {
+      setTasks([...tasks, newTask.trim()]);
+      setNewTask("");
+    }
   };
-  const deleteTask = (id) => {
-    setTodoList(todoList.filter((task) => task.id !== id));
+
+  const deleteTask = (index) => {
+    const updated = tasks.filter((_, i) => i !== index);
+    setTasks(updated);
   };
-  const completeTask = (id) => {
-    setTodoList(
-      todoList.map((task) => {
-        if (task.id === id) {
-          return { ...task, completed: true };
-        } else {
-          return task;      
-        }
-      })
-    );
+
+  const startEditing = (index) => {
+    setEditingIndex(index);
+    setEditedTask(tasks[index]);
   };
+
+  const saveTask = (index) => {
+    const updated = tasks.map((task, i) => (i === index ? editedTask : task));
+    setTasks(updated);
+    setEditingIndex(null);
+    setEditedTask("");
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") addTask();
+  };
+
   return (
     <div className="App">
-      
-      <div className='addTask'>
-         <div className='heading' > <h2>Minimal TodoList </h2></div> 
-         
-       <div className='main'> <input onChange={handleChange} />
-       <button className='ss' onClick={addTask}> Add Task</button> </div>
+      <h2>📝 My To-Do List</h2>
+
+      <div className="addTask">
+        <input
+          type="text"
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+          placeholder="Add a new task..."
+          onKeyDown={handleKeyPress}
+          autoFocus
+          autoComplete="off"
+        />
+        <button className="ss" onClick={addTask}>
+          Add Task
+        </button>
       </div>
-      <div className='flex'>
-      <div className='list'>
-        {todoList.map((task) => {
-          return <Task taskName = {task.taskName}
-           id = {task.id} completed={task.completed} deleteTask = {deleteTask} completeTask={completeTask}/>;
-        })}
-        </div>
-      </div>  
+
+      <div className="task-list">
+        {tasks.map((task, index) => (
+          <div key={index} className="todo">
+            {editingIndex === index ? (
+              <>
+                <input
+                  type="text"
+                  value={editedTask}
+                  onChange={(e) => setEditedTask(e.target.value)}
+                />
+                <button onClick={() => saveTask(index)}>💾</button>
+              </>
+            ) : (
+              <>
+                <p>{task}</p>
+                <div className="todo-buttons">
+                  <button onClick={() => startEditing(index)}>✏️</button>
+                  <button onClick={() => deleteTask(index)}>🗑️</button>
+                </div>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
-export default App; 
+export default App;

@@ -6,7 +6,7 @@ A clean and minimalistic to-do list built with React.js. Designed with neurodive
 
 ## 🌟 Features
 
-- 🧠 Add, complete, and delete tasks
+- 🧠 Responsive Add, complete, and delete tasks and stylized buttons.
 - 🔁 Edit tasks in place
 - 💾 Saves to `localStorage` automatically
 - ♿ Keyboard & screen-reader accessible
