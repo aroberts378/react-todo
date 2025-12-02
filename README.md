@@ -25,9 +25,7 @@ A clean and minimalistic to-do list built with React.js. Designed with neurodive
 > Add a screenshot once design is polished:
 
 ```md
-<img src="<img width="501" height="272" alt="todo app 2025-12-02 174621" src="https://github.com/user-attachments/assets/a53aa981-836c-4607-9337-d7605963809f" />
-" alt="React To-Do Screenshot" width="100%" />
-```
+<a href="https://media.licdn.com/dms/image/v2/D4E2DAQGga67ReLRyWA/profile-treasury-image-shrink_800_800/B4EZrhQsVIKgAY-/0/1764715841175?e=1765321200&v=beta&t=QSpEf8WX1KsmSLn0e9oU8v527xwjYcDKkYhdQcsfXhc" alt="To do screenshoot"/>
 
 ---
 
