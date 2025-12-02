@@ -16,7 +16,7 @@ A clean and minimalistic to-do list built with React.js. Designed with neurodive
 
 ## 🚀 Live Demo
 
-**[🔗 View App Live](https://your-live-link.netlify.app/)** <!-- Replace when deployed -->
+**[🔗 View App Live](https://foxtech-todo.netlify.app/)** 
 
 ---
 
